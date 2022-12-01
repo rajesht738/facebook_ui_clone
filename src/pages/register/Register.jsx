@@ -1,27 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "./login.scss"
-const Login = () => {
+import "./register.scss"
+const Register = () => {
   return (
-    <div className='login'>
+    <div className='register'>
         <div className="card">
             <div className="left">
-                <h1>Hello World</h1>
+            <h1>Hello World</h1>
                 <p>Lorem ipsum dolar sit Lorem ipsum dolar sit Lorem ipsum dolar sit </p>
-                <span>Don't you have an account!</span>
-               <Link to="/register"><button>Register</button></Link>
-            </div>
+                <span>Do you have an account!</span>
+               <Link to="/login"><button>Login</button></Link>
+              </div>
             <div className="right">
-                <h1>Login</h1>
+            <h1>Register</h1>
                 <form action="">
                     <input type="text" name="username" id="" placeholder='username' />
+                    <input type="email" name="email" id="" placeholder='email'/>
                     <input type="password" name="password" id="" placeholder='password'/>
-                    <button>Login</button>
+                    <input type="text" name="name" id="" placeholder='name'/>
+                    <button>Register</button>
                 </form>
+           
             </div>
         </div>
     </div>
   )
 }
 
-export default Login
+export default Register
