@@ -1,0 +1,90 @@
+@import "../../styles.scss";
+
+
+.rightBar {
+  @include themify($themes) {
+  flex: 4;
+  position: sticky;
+  top: 70px;
+  height: calc(100vh - 70px);
+  overflow: scroll;
+  background-color: themed("bgSoft");
+  color: themed("textColor");
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .container {
+    padding: 20px;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      background-color: themed("bg");
+      padding: 20px;
+      margin-bottom: 20px;
+
+      span {
+        color: themed("textColorSoft");
+        margin-bottom: 10px;
+      }
+      .user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 10px 0px;
+        .userInfo {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          position: relative;
+
+          p {
+            color: themed("textColorSoft");
+          }
+          img {
+            width: 30px;
+            height: 30px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
+          .online{
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: limegreen ;
+            position: absolute;
+            top:0;
+            left: 25px;
+          }
+          span {
+            font-weight: 500;
+            color: themed("textColor");
+          }
+        }
+        span {
+        }
+        .buttons {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          .followBtn {
+            background-color: blue;
+            padding: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+          }
+          .dismissBtn {
+            background-color: green;
+            padding: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+}
