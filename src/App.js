@@ -15,8 +15,9 @@ import Profile from "./pages/profile/Profile";
 import "./styles.scss"
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+import { AuthContext } from "./context/authContext";
 function App() {
-  const currentUser = true;
+  const {currentUser} = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {
@@ -52,7 +53,7 @@ function App() {
           element: <Home />
         },
         {
-          path: "/profile:id",
+          path: "/profile/:id",
           element: <Profile />
         },
       ]
