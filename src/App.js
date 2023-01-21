@@ -16,6 +16,11 @@ import "./styles.scss"
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
+import {
+  QueryClient,
+  QueryClientProvider,
+  
+} from '@tanstack/react-query'
 function App() {
   const {currentUser} = useContext(AuthContext);
 
@@ -28,8 +33,10 @@ function App() {
 
   const { darkMode } = useContext(DarkModeContext);
  // console.log(darkMode);
+ const queryClient = new QueryClient()
   const Layout = () => {
     return (
+      <QueryClientProvider client={queryClient}>
 
       <div className={`theme-${darkMode ? "dark" : "light"}`}>
         <NavBar />
@@ -41,6 +48,7 @@ function App() {
           <RightBar />
         </div>
       </div>
+</QueryClientProvider>
     )
   }
   const router = createBrowserRouter([

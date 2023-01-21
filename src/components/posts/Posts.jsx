@@ -1,41 +1,28 @@
-import React from 'react'
-import Post from '../post/Post';
-import "./posts.scss"
-const Posts = () => {
-    const posts  = [
-        {
-            id: 1,
-            name: 'John Doe',
-            userId: 1,
-            profilePic: "",
-            desc:" Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-            img: "https://images.pexels.com/photos/4781209/pexels-photo-4781209.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        },
-        {
-            id: 2,
-            name: 'John Doe',
-            userId: 1,
-            profilePic: "",
-            desc:" Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-            img: "https://images.pexels.com/photos/8140059/pexels-photo-8140059.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        },
-        {
-            id: 3,
-            name: 'John Doe',
-            userId: 2,
-            profilePic: "",
-            desc:" Lorem ipsum dolor sit, amet consectetur adipisicing elit.",
-            img: "https://images.pexels.com/photos/14664633/pexels-photo-14664633.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        },
-    ];
-  return (
-    <div className='posts'>
-    { posts.map((post) => (
-        <Post post= {post} key={post.id}/>
-    ))
-    }
-    </div>
-  )
-}
+import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import Post from "../post/Post";
+import "./posts.scss";
+import makeRequest from "../../axios";
+import Share from "../share/Share";
 
-export default Posts
+const Posts = () => {
+  const { isLoading, error, data } = useQuery(["posts"], () =>
+    makeRequest.get("/posts").then((res) => {
+      return res.data;
+    })
+  );
+  console.log(data);
+  return (
+    
+    <div className="posts">
+    <Share/>
+      {error
+        ? "Something went wrong!"
+        : isLoading
+        ? "loading..."
+        : data.map((post) => <Post post={post} key={post.id} />)}
+    </div>
+  );
+};
+
+export default Posts;
